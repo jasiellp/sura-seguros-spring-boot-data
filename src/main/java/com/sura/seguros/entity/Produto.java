@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produto 
@@ -12,7 +14,11 @@ public class Produto
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProduto;
-    private Long idCategoria;
+    
+    @ManyToOne
+    @JoinColumn(name = "idCategoria")
+    private Categoria categoria;
+
     private Long quantidade;
     private Double preco;
     private String descricao;
@@ -55,16 +61,7 @@ public class Produto
     {
         this.produto = produto;
     }
-   
-	public Long getIdCategoria() 
-	{
-		return idCategoria;
-	}
-
-	public void setIdCategoria(Long idCategoria) 
-	{
-		this.idCategoria = idCategoria;
-	}
+    
 
 	public Double getPreco() 
 	{
@@ -104,6 +101,15 @@ public class Produto
 	public void setFoto(String foto) 
 	{
 		this.foto = foto;
+	}
+	public Categoria getCategoria()
+	{
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria)
+	{
+		this.categoria = categoria;
 	}
 
 }

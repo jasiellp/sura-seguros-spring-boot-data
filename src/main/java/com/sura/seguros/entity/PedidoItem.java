@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PedidoItem 
@@ -12,8 +14,15 @@ public class PedidoItem
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idItem; 
-	private Long idPedido;
-    private Long idProduto;
+    @ManyToOne
+    @JoinColumn(name = "idPedido")
+    private Pedido pedido;
+   
+
+	@ManyToOne
+    @JoinColumn(name = "idProduto")
+    private Produto idProduto;
+    
     private Long quantidade;
     private Double valor;
     private Double subtotal;
@@ -34,13 +43,28 @@ public class PedidoItem
         return "PedidoItem{ " +
                 "idItem=" + idItem +
                 ", produto='" + produto + '\'' +
-                ", idPedido=" + idPedido +
+                
                 ", idProduto=" + idProduto +
                 ", quantidade=" + quantidade +
                 ", valor=" + valor +
                 ", subtotal=" + subtotal +
                 '}';
     }
+    
+    public Pedido getPedido()
+   	{
+   		return pedido;
+   	}
+
+   	public void setPedido(Pedido pedido)
+   	{
+   		this.pedido = pedido;
+   	}
+
+   	public void setIdProduto(Produto idProduto)
+   	{
+   		this.idProduto = idProduto;
+   	}
     
     public Long getIdItem()
 	{
@@ -50,28 +74,8 @@ public class PedidoItem
 	public void setIdItem(Long idItem)
 	{
 		this.idItem = idItem;
-	}
-
-	public Long getIdPedido()
-	{
-		return idPedido;
-	}
-
-	public void setIdPedido(Long idPedido)
-	{
-		this.idPedido = idPedido;
-	}
-
-	public Long getIdProduto()
-	{
-		return idProduto;
-	}
-
-	public void setIdProduto(Long idProduto)
-	{
-		this.idProduto = idProduto;
-	}
-
+	} 
+	
 	public Long getQuantidade()
 	{
 		return quantidade;

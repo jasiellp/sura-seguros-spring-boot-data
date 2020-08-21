@@ -12,6 +12,8 @@ public class Cliente
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idCliente;
+	
+
 	private String name;
 	private String email;
 	private String senha;
@@ -46,6 +48,11 @@ public class Cliente
 						
 						'}';
 	} 
+	
+	public Long getIdCliente()
+	{
+		return idCliente;
+	}
 	
 	public String getName()
 	{

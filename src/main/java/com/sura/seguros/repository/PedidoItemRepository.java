@@ -8,5 +8,5 @@ import com.sura.seguros.entity.PedidoItem;
 
 public interface PedidoItemRepository extends CrudRepository<PedidoItem, Long> 
 {
-    List<PedidoItem> findByName(String name);
+    List<PedidoItem> findByProduto(String name);
 }

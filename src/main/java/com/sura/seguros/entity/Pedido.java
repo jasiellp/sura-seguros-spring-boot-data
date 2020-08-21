@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pedido 
@@ -14,7 +16,11 @@ public class Pedido
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPedido;
-    private Long idCliente;
+   
+
+	@ManyToOne
+    @JoinColumn(name = "idCliente")
+    private Cliente cliente;
     private Date data;
     private String name;
     private String status;
@@ -37,12 +43,32 @@ public class Pedido
                 " idPedido=" + idPedido +
                 ", name='" + name + '\'' +
                 ", data='" + data + '\'' +
-                ", idCliente=" + idCliente +
+                 
                 ", status='" + status + '\'' +
                 ", sessao='" + sessao + '\'' +
                 '}';
     }
  
+    
+    public Long getIdPedido()
+   	{
+   		return idPedido;
+   	}
+
+   	public void setIdPedido(Long idPedido)
+   	{
+   		this.idPedido = idPedido;
+   	}
+
+   	public Cliente getCliente()
+   	{
+   		return cliente;
+   	}
+
+   	public void setCliente(Cliente cliente)
+   	{
+   		this.cliente = cliente;
+   	}
     public String getName() 
     {
         return name;
@@ -62,16 +88,7 @@ public class Pedido
    	{
    		this.data = data;
    	}
-
-   	public Long getIdCliente()
-   	{
-   		return idCliente;
-   	}
-
-   	public void setIdCliente(Long idCliente)
-   	{
-   		this.idCliente = idCliente;
-   	}
+ 
 
    	public String getStatus()
    	{

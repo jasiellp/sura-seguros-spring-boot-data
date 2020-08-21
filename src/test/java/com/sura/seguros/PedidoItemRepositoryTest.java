@@ -32,7 +32,7 @@ public class PedidoItemRepositoryTest
 
         entityManager.persist(new PedidoItem("C++"));
 
-        List<PedidoItem> PedidoItems = repository.findByName("C++");
+        List<PedidoItem> PedidoItems = repository.findByProduto("C++");
         assertEquals(1, PedidoItems.size());
 
         assertThat(PedidoItems).extracting(PedidoItem::getProduto).containsOnly("C++");
