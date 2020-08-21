@@ -31,13 +31,13 @@ public class PedidoController
     }
      
     @GetMapping(path="/pedido", produces = "application/json")
-    public Optional<Pedido> consultarCategoriaPeloIdCategoria(@RequestParam Long id_pedido) 
+    public Optional<Pedido> consultarPedidoPeloIdCategoria(@RequestParam Long id_pedido) 
     {
         return pedidoRepository.findById(id_pedido);
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> inserirCategoria(@RequestBody Pedido pedido) throws Exception 
+    public ResponseEntity<Object> inserirPedido(@RequestBody Pedido pedido) throws Exception 
     {
        
         //add resource
@@ -45,7 +45,7 @@ public class PedidoController
         
         //Create resource location
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                                    .path("/{id_categoria}")
+                                    .path("/{id_pedido}")
                                     .buildAndExpand(pedido.getIdPedido())
                                     .toUri();
         

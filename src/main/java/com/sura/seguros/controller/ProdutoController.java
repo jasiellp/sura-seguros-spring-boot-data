@@ -18,26 +18,26 @@ import com.sura.seguros.repository.ProdutoRepository;
 
 
 @RestController
-@RequestMapping(path = "/pedido_item")
+@RequestMapping(path = "/produto")
 public class ProdutoController 
 {
     @Autowired
     private ProdutoRepository produtoRepository;
     
     @GetMapping(path="/", produces = "application/json")
-    public Iterable<Produto> consultarTodosClientes() 
+    public Iterable<Produto> consultarTodosProdutos() 
     {
         return produtoRepository.findAll();
     }
      
-    @GetMapping(path="/item", produces = "application/json")
-    public Optional<Produto> consultarCategoriaPeloIdCategoria(@RequestParam Long id_Produto) 
+    @GetMapping(path="/produto", produces = "application/json")
+    public Optional<Produto> consultarProdutoPeloIdCategoria(@RequestParam Long id_Produto) 
     {
         return produtoRepository.findById(id_Produto);
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> inserirCategoria(@RequestBody Produto produto) throws Exception 
+    public ResponseEntity<Object> inserirProduto(@RequestBody Produto produto) throws Exception 
     {
        
         //add resource
@@ -45,7 +45,7 @@ public class ProdutoController
         
         //Create resource location
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                                    .path("/{id_categoria}")
+                                    .path("/{id_produto}")
                                     .buildAndExpand( produto.getIdProduto())
                                     .toUri();
         

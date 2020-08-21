@@ -20,6 +20,7 @@ import com.sura.seguros.repository.ClienteRepository;
 @RequestMapping(path = "/cliente")
 public class ClienteController 
 {
+	
     @Autowired
     private ClienteRepository clienteRepository;
     
@@ -30,22 +31,22 @@ public class ClienteController
     }
      
     @GetMapping(path="/cliente", produces = "application/json")
-    public Optional<Cliente> consultarCategoriaPeloIdCategoria(@RequestParam Long id_cliente) 
+    public Optional<Cliente> consultarCientePeloIdCliente(@RequestParam Long id_cliente) 
     {
         return clienteRepository.findById(id_cliente);
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> inserirCategoria(@RequestBody Cliente categoria) throws Exception 
+    public ResponseEntity<Object> inserirCliente(@RequestBody Cliente cliente) throws Exception 
     {
        
         //add resource
-    	clienteRepository.save(categoria);
+    	clienteRepository.save(cliente);
         
         //Create resource location
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                                    .path("/{id_categoria}")
-                                    .buildAndExpand(categoria.getIdCliente())
+                                    .path("/{id_cliente}")
+                                    .buildAndExpand(cliente.getIdCliente())
                                     .toUri();
         
         //Send location in response

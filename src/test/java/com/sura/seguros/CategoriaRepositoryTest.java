@@ -29,16 +29,24 @@ public class CategoriaRepositoryTest
     @Test
     public void testFindByName() 
     {
-
         entityManager.persist(new Categoria("C++"));
 
         List<Categoria> categorias = repository.findByCategoria("C++");
         assertEquals(1, categorias.size());
 
         assertThat(categorias).extracting(Categoria::getCategoria).containsOnly("C++");
-        
+    }
+    
+    @Test
+    public void deleteByIdCategory() 
+    {
+        entityManager.persist(new Categoria("C++"));
 
+        List<Categoria> categorias = repository.findByCategoria("C++");
+        assertEquals(1, categorias.size());
 
+        repository.delete(new Categoria("C++"));
+        assertEquals(0, categorias.size());
     }
 
 }
