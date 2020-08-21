@@ -13,78 +13,78 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 import com.sura.seguros.entity.Cliente;
-import com.sura.seguros.repository.ClienteRepository;
+import com.sura.seguros.entity.Pedido;
+import com.sura.seguros.repository.PedidoRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class PedidoRepositoryTest 
 {
  
-	private String sCliente = "TesteCliente";
+	private String sPedido = "TestePedido";
 	
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private ClienteRepository repository;
+    private PedidoRepository repository;
 
     @Test
-    public void testFindByName() 
+    public void testFindPedidoByName() 
     { 
-    	Cliente cliente = new Cliente(sCliente);
+    	Pedido pedido = new Pedido(sPedido);
     	
-        entityManager.persist(cliente);
+        entityManager.persist(pedido);
 
-        List<Cliente> clientes = repository.findByName(sCliente);
+        List<Pedido> pedidos = repository.findByName(sPedido);
         
-        assertEquals(1, clientes.size());
+        assertEquals(1, pedidos.size());
 
-        assertThat(clientes).extracting(Cliente::getName).containsOnly(sCliente);
+        assertThat(pedidos).extracting(Pedido::getName).containsOnly(sPedido);
     }
     
     
     @Test
-    public void deleteByIdCategory() 
+    public void deletePedidoByIdPedido() 
     {  	
-    	Cliente cliente = new Cliente(sCliente);
+    	Pedido pedido = new Pedido(sPedido);
     	
-        entityManager.persist(cliente);
+        entityManager.persist(pedido);
 
-        List<Cliente> clientes = repository.findByName(sCliente);
+        List<Pedido> pedidos = repository.findByName(sPedido);
         
-        assertEquals(1, clientes.size());
+        assertEquals(1, pedidos.size());
 
-        repository.deleteById(cliente.getIdCliente());
+        repository.deleteById(pedido.getIdPedido());
         
-        List<Cliente> clientes_ = repository.findByName(sCliente);
+        List<Pedido> clientes_ = repository.findByName(sPedido);
         
         assertEquals(0, clientes_.size());
     }
     
     @Test
-    public void deleteByCategory() 
+    public void deletePedidoByPedido() 
     {  	
-    	Cliente cliente = new Cliente(sCliente);
+    	Pedido pedido = new Pedido(sPedido);
     	
-        entityManager.persist(cliente);
+        entityManager.persist(pedido);
 
-        List<Cliente> categorias = repository.findByName(sCliente);
+        List<Pedido> pedidos = repository.findByName(sPedido);
         
-        assertEquals(1, categorias.size());
+        assertEquals(1, pedidos.size());
 
-        repository.delete(cliente);
+        repository.delete(pedido);
         
-        List<Cliente> categorias_ = repository.findByName(sCliente);
+        List<Pedido> pedidos_ = repository.findByName(sPedido);
         
-        assertEquals(0, categorias_.size());
+        assertEquals(0, pedidos_.size());
     }
     
     @Test
     public void validEntity() 
     {
-    	Cliente cliente = new Cliente(sCliente);
+    	Cliente cliente = new Cliente(sPedido);
     	cliente.setBairro("Jd Felicidade");
     	cliente.setCep("04343-333");
     	cliente.setCidade("Osasco");
@@ -93,13 +93,31 @@ public class PedidoRepositoryTest
     	cliente.setRua("Rua : Lucelia Santos");
     	cliente.setSenha("fsdf@$@@$%-333");
     	
-    	assertTrue("Jd Felicidade".equals(cliente.getBairro()));
-    	assertTrue("04343-333".equals(cliente.getCep()));
-    	assertTrue("Osasco".equals(cliente.getCidade()));
-    	assertTrue("teste@teste.com".equals(cliente.getEmail()));
-    	assertTrue("Minas Gerais".equals(cliente.getEstado()));
-    	assertTrue("Rua : Lucelia Santos".equals(cliente.getRua()));
-    	assertTrue("fsdf@$@@$%-333".equals(cliente.getSenha())); 
+    	Pedido pedido = new Pedido(sPedido);
+    	
+    	
+    	pedido.setCliente(cliente);
+    	pedido.setIdPedido(44242L);
+    	pedido.setName("Camisa do Deus Pele");
+    	
+    	pedido.setSessao("true");
+    	pedido.setStatus("Valido");
+    	
+    	assertTrue(44242L == (pedido.getIdPedido()));
+    	
+    	assertTrue("Camisa do Deus Pele".equals(pedido.getName()));
+    	assertTrue("true".equals(pedido.getSessao()));
+    	assertTrue("Valido".equals(pedido.getStatus()));
+    	
+    	
+    	
+    	assertTrue("Jd Felicidade".equals(pedido.getCliente().getBairro()));
+    	assertTrue("04343-333".equals(pedido.getCliente().getCep()));
+    	assertTrue("Osasco".equals(pedido.getCliente().getCidade()));
+    	assertTrue("teste@teste.com".equals(pedido.getCliente().getEmail()));
+    	assertTrue("Minas Gerais".equals(pedido.getCliente().getEstado()));
+    	assertTrue("Rua : Lucelia Santos".equals(pedido.getCliente().getRua()));
+    	assertTrue("fsdf@$@@$%-333".equals(pedido.getCliente().getSenha())); 
     	
     }
 }

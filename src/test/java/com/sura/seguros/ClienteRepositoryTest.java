@@ -31,7 +31,7 @@ public class ClienteRepositoryTest
     private ClienteRepository repository;
 
     @Test
-    public void testFindByName() 
+    public void testFindClienteByName() 
     { 
     	Cliente cliente = new Cliente(sCliente);
     	
@@ -46,7 +46,7 @@ public class ClienteRepositoryTest
     
     
     @Test
-    public void deleteByIdCategory() 
+    public void deleteClienteByIdCliente() 
     {  	
     	Cliente cliente = new Cliente(sCliente);
     	
@@ -64,7 +64,7 @@ public class ClienteRepositoryTest
     }
     
     @Test
-    public void deleteByCategory() 
+    public void deleteClienteByCliente() 
     {  	
     	Cliente cliente = new Cliente(sCliente);
     	

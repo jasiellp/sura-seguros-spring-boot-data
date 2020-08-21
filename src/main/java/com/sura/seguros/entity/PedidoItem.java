@@ -21,12 +21,12 @@ public class PedidoItem
 
 	@ManyToOne
     @JoinColumn(name = "idProduto")
-    private Produto idProduto;
+    private Produto produto;
     
     private Long quantidade;
     private Double valor;
     private Double subtotal;
-    private String produto;
+    private String produto_nome;
 
     public PedidoItem() 
     {
@@ -34,7 +34,7 @@ public class PedidoItem
 
     public PedidoItem(String produto) 
     {
-        this.produto = produto;
+        this.produto_nome = produto;
     }
 
     @Override
@@ -42,9 +42,9 @@ public class PedidoItem
     {
         return "PedidoItem{ " +
                 "idItem=" + idItem +
-                ", produto='" + produto + '\'' +
+                ", produto='" + produto_nome + '\'' +
                 
-                ", idProduto=" + idProduto +
+                ", idProduto=" + produto +
                 ", quantidade=" + quantidade +
                 ", valor=" + valor +
                 ", subtotal=" + subtotal +
@@ -61,12 +61,17 @@ public class PedidoItem
    		this.pedido = pedido;
    	}
 
-   	public void setIdProduto(Produto idProduto)
+   	public void setProduto(Produto produto)
    	{
-   		this.idProduto = idProduto;
+   		this.produto = produto;
    	}
     
-    public Long getIdItem()
+    public Produto getProduto()
+	{
+		return produto;
+	}
+
+	public Long getIdItem()
 	{
 		return idItem;
 	}
@@ -106,14 +111,14 @@ public class PedidoItem
 		this.subtotal = subtotal;
 	}
 
-	public String getProduto()
+	public String getProdutoName()
 	{
-		return produto;
+		return produto_nome;
 	}
 
-	public void setProduto(String produto)
+	public void setProdutoNome(String produto_nome)
 	{
-		this.produto = produto;
+		this.produto_nome = produto_nome;
 	}
 
  

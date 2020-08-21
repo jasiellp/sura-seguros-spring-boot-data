@@ -13,93 +13,100 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-import com.sura.seguros.entity.Cliente;
-import com.sura.seguros.repository.ClienteRepository;
+import com.sura.seguros.entity.Categoria;
+import com.sura.seguros.entity.Produto;
+import com.sura.seguros.repository.ProdutoRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class ProdutoRepositoryTest 
 {
- 
-	private String sCliente = "TesteCliente";
+	private String sCategoria = "TesteCategoria";
+	private String sProduto = "TesteProduto";
 	
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private ClienteRepository repository;
+    private ProdutoRepository repository;
 
     @Test
-    public void testFindByName() 
+    public void testFindProdutoByName() 
     { 
-    	Cliente cliente = new Cliente(sCliente);
+    	Produto produto = new Produto(sProduto);
     	
-        entityManager.persist(cliente);
+        entityManager.persist(produto);
 
-        List<Cliente> clientes = repository.findByName(sCliente);
+        List<Produto> produtos = repository.findByProduto(sProduto);
         
-        assertEquals(1, clientes.size());
+        assertEquals(1, produtos.size());
 
-        assertThat(clientes).extracting(Cliente::getName).containsOnly(sCliente);
+        assertThat(produtos).extracting(Produto::getProduto).containsOnly(sProduto);
     }
     
     
     @Test
-    public void deleteByIdCategory() 
+    public void deleteProdutoByIdProduto() 
     {  	
-    	Cliente cliente = new Cliente(sCliente);
+    	Produto produto = new Produto(sProduto);
     	
-        entityManager.persist(cliente);
+        entityManager.persist(produto);
 
-        List<Cliente> clientes = repository.findByName(sCliente);
+        List<Produto> produtos = repository.findByProduto(sProduto);
         
-        assertEquals(1, clientes.size());
+        assertEquals(1, produtos.size());
 
-        repository.deleteById(cliente.getIdCliente());
+        repository.deleteById(produto.getIdProduto());
         
-        List<Cliente> clientes_ = repository.findByName(sCliente);
+        List<Produto> produtos_ = repository.findByProduto(sProduto);
         
-        assertEquals(0, clientes_.size());
+        assertEquals(0, produtos_.size());
     }
     
     @Test
-    public void deleteByCategory() 
+    public void deleteProdutoByProduto() 
     {  	
-    	Cliente cliente = new Cliente(sCliente);
+    	Produto produto = new Produto(sProduto);
     	
-        entityManager.persist(cliente);
+        entityManager.persist(produto);
 
-        List<Cliente> categorias = repository.findByName(sCliente);
+        List<Produto> produtos = repository.findByProduto(sProduto);
         
-        assertEquals(1, categorias.size());
+        assertEquals(1, produtos.size());
 
-        repository.delete(cliente);
+        repository.delete(produto);
         
-        List<Cliente> categorias_ = repository.findByName(sCliente);
+        List<Produto> produtos_ = repository.findByProduto(sProduto);
         
-        assertEquals(0, categorias_.size());
+        assertEquals(0, produtos_.size());
     }
     
     @Test
     public void validEntity() 
-    {
-    	Cliente cliente = new Cliente(sCliente);
-    	cliente.setBairro("Jd Felicidade");
-    	cliente.setCep("04343-333");
-    	cliente.setCidade("Osasco");
-    	cliente.setEmail("teste@teste.com");
-    	cliente.setEstado("Minas Gerais");
-    	cliente.setRua("Rua : Lucelia Santos");
-    	cliente.setSenha("fsdf@$@@$%-333");
+    {	
+    	Categoria categoria = new Categoria();
+    	categoria.setCategoria(sCategoria);
+    	categoria.setIdCategoria(2L);
     	
-    	assertTrue("Jd Felicidade".equals(cliente.getBairro()));
-    	assertTrue("04343-333".equals(cliente.getCep()));
-    	assertTrue("Osasco".equals(cliente.getCidade()));
-    	assertTrue("teste@teste.com".equals(cliente.getEmail()));
-    	assertTrue("Minas Gerais".equals(cliente.getEstado()));
-    	assertTrue("Rua : Lucelia Santos".equals(cliente.getRua()));
-    	assertTrue("fsdf@$@@$%-333".equals(cliente.getSenha())); 
+    	Produto produto = new Produto(sProduto);
+    	produto.setCategoria(categoria);
+    	produto.setDescricao("Teste Descricao");
+    	produto.setFoto("https://fotos.com.br/tesasad.jpg");
+    	produto.setIdProduto(33L);
+    	produto.setPreco(33.55);
+    	produto.setQuantidade(22L);
+    	
+    	
+    	assertTrue("https://fotos.com.br/tesasad.jpg".equals(produto.getFoto()));
+    	assertTrue("Teste Descricao".equals(produto.getDescricao()));
+    	assertTrue(33L == produto.getIdProduto());
+    	assertTrue(22L == produto.getQuantidade());
+    	assertTrue(33.55 == produto.getPreco());
+    	
+    	assertTrue(2L == produto.getCategoria().getIdCategoria());
+    	assertTrue(sCategoria.equals(produto.getCategoria().getCategoria()));
+    	
+    	 
     	
     }
 }
