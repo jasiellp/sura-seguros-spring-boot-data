@@ -1,6 +1,7 @@
 package com.sura.seguros.controller;
 
 import java.net.URI;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,36 +9,44 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sura.seguros.entity.Cliente;
-import com.sura.seguros.repository.ClienteRepository;
+import com.sura.seguros.entity.PedidoItem;
+import com.sura.seguros.repository.PedidoItemRepository;
+
 
 @RestController
-@RequestMapping(path = "/cliente")
-public class ClientController 
+@RequestMapping(path = "/pedido_item")
+public class PedidoItemController 
 {
     @Autowired
-    private ClienteRepository clienteRepository;
+    private PedidoItemRepository pedidoRepository;
     
     @GetMapping(path="/", produces = "application/json")
-    public Iterable<Cliente> getClientes() 
+    public Iterable<PedidoItem> consultarTodosClientes() 
     {
-        return clienteRepository.findAll();
+        return pedidoRepository.findAll();
+    }
+     
+    @GetMapping(path="/item", produces = "application/json")
+    public Optional<PedidoItem> consultarCategoriaPeloIdCategoria(@RequestParam Long id_pedido) 
+    {
+        return pedidoRepository.findById(id_pedido);
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> addCliente( @RequestBody Cliente client) throws Exception 
-    {       
+    public ResponseEntity<Object> inserirCategoria(@RequestBody PedidoItem pedido) throws Exception 
+    {
        
         //add resource
-    	clienteRepository.save(client);
+    	pedidoRepository.save(pedido);
         
         //Create resource location
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                                    .path("/{id_cliente}")
-                                    .buildAndExpand(client.getIdCliente())
+                                    .path("/{id_categoria}")
+                                    .buildAndExpand(pedido.getIdItem())
                                     .toUri();
         
         //Send location in response

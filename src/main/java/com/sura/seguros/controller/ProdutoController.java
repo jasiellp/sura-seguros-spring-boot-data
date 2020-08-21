@@ -13,39 +13,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sura.seguros.entity.Categoria;
-import com.sura.seguros.repository.CategoriaRepository;
+import com.sura.seguros.entity.Produto;
+import com.sura.seguros.repository.ProdutoRepository;
+
 
 @RestController
-@RequestMapping(path = "/categoria")
-public class CategoriaController 
+@RequestMapping(path = "/pedido_item")
+public class ProdutoController 
 {
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    private ProdutoRepository produtoRepository;
     
     @GetMapping(path="/", produces = "application/json")
-    public Iterable<Categoria> consultarTodasCategorias() 
+    public Iterable<Produto> consultarTodosClientes() 
     {
-        return categoriaRepository.findAll();
+        return produtoRepository.findAll();
     }
      
-    @GetMapping(path="/categoria", produces = "application/json")
-    public Optional<Categoria> consultarCategoriaPeloIdCategoria(@RequestParam Long id_categoria) 
+    @GetMapping(path="/item", produces = "application/json")
+    public Optional<Produto> consultarCategoriaPeloIdCategoria(@RequestParam Long id_Produto) 
     {
-        return categoriaRepository.findById(id_categoria);
+        return produtoRepository.findById(id_Produto);
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> inserirCategoria(@RequestBody Categoria categoria) throws Exception 
+    public ResponseEntity<Object> inserirCategoria(@RequestBody Produto produto) throws Exception 
     {
        
         //add resource
-    	categoriaRepository.save(categoria);
+    	produtoRepository.save(produto);
         
         //Create resource location
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                                     .path("/{id_categoria}")
-                                    .buildAndExpand(categoria.getIdCategoria())
+                                    .buildAndExpand( produto.getIdProduto())
                                     .toUri();
         
         //Send location in response
