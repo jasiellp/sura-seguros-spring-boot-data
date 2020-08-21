@@ -29,7 +29,7 @@ public class SwaggerConfig {
 
 	private ApiInfo metaData() {
 		return new ApiInfoBuilder()
-				.title("API Rest SURA Segutes ")
+				.title("API Rest SURA Seguros ")
 				.description("Serviço criado por Jasiel P de Sant ana")
 				.version("2.1")
 				.license("Linkedin")
