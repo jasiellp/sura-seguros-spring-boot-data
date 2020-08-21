@@ -8,5 +8,5 @@ import com.sura.seguros.entity.Categoria;
 
 public interface CategoriaRepository extends CrudRepository<Categoria, Long> 
 {
-    List<Categoria> findByName(String name);
+    List<Categoria> findByCategoria(String categoria);
 }

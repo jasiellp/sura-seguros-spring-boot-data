@@ -29,16 +29,12 @@ public class ProdutoRepositoryTest
     @Test
     public void testFindByName() 
     {
-
         entityManager.persist(new Produto("C++"));
 
-        List<Produto> Produtos = repository.findByName("C++");
+        List<Produto> Produtos = repository.findByProduto("C++");
         assertEquals(1, Produtos.size());
 
-        assertThat(Produtos).extracting(Produto::getName).containsOnly("C++");
-        
-
-
+        assertThat(Produtos).extracting(Produto::getProduto).containsOnly("C++");
     }
 
 }

@@ -32,7 +32,7 @@ public class CategoriaRepositoryTest
 
         entityManager.persist(new Categoria("C++"));
 
-        List<Categoria> categorias = repository.findByName("C++");
+        List<Categoria> categorias = repository.findByCategoria("C++");
         assertEquals(1, categorias.size());
 
         assertThat(categorias).extracting(Categoria::getCategoria).containsOnly("C++");

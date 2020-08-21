@@ -11,51 +11,99 @@ public class Produto
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String produto;
-    private Double preco;
+    private Long idProduto;
+    private Long idCategoria;
     private Long quantidade;
+    private Double preco;
     private String descricao;
     private String foto;
-    
-    
-    
-    
+    private String produto;
+     
     public Produto() 
-    {
-    }
+    { }
 
-    public Produto(String name) 
+    public Produto(String produto) 
     {
-        this.name = name;
+        this.produto = produto;
     }
 
     @Override
     public String toString() 
     {
-        return "Book{ " +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "Produto{ " +
+                "idProduto=" + idProduto +
+                ", produto='" + produto + '\'' +
                 '}';
     }
 
-    public Long getId() 
+    public Long getIdProduto() 
     {
-        return id;
+        return this.idProduto;
     }
 
-    public void setId(Long id) 
+    public void setIdProduto(Long idProduto) 
     {
-        this.id = id;
+        this.idProduto = idProduto;
     }
 
-    public String getName() 
+    public String getProduto() 
     {
-        return name;
+        return this.produto;
     }
 
-    public void setName(String name) 
+    public void setProduto(String produto) 
     {
-        this.name = name;
+        this.produto = produto;
     }
+   
+	public Long getIdCategoria() 
+	{
+		return idCategoria;
+	}
+
+	public void setIdCategoria(Long idCategoria) 
+	{
+		this.idCategoria = idCategoria;
+	}
+
+	public Double getPreco() 
+	{
+		return preco;
+	}
+
+	public void setPreco(Double preco) 
+	{
+		this.preco = preco;
+	}
+
+	public Long getQuantidade() 
+	{
+		return quantidade;
+	}
+
+	public void setQuantidade(Long quantidade) 
+	{
+		this.quantidade = quantidade;
+	}
+
+	public String getDescricao() 
+	{
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) 
+	{
+		this.descricao = descricao;
+	}
+
+	public String getFoto() 
+	{
+		return foto;
+	}
+
+	public void setFoto(String foto) 
+	{
+		this.foto = foto;
+	}
+
 }

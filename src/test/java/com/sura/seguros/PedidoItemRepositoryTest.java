@@ -35,7 +35,7 @@ public class PedidoItemRepositoryTest
         List<PedidoItem> PedidoItems = repository.findByName("C++");
         assertEquals(1, PedidoItems.size());
 
-        assertThat(PedidoItems).extracting(PedidoItem::getName).containsOnly("C++");
+        assertThat(PedidoItems).extracting(PedidoItem::getProduto).containsOnly("C++");
         
 
 
