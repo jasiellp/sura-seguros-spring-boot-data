@@ -2,6 +2,7 @@ package com.sura.seguros;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -48,5 +49,15 @@ public class CategoriaRepositoryTest
         repository.delete(new Categoria("C++"));
         assertEquals(0, categorias.size());
     }
-
+    
+    @Test
+    public void validEntity() 
+    {
+    	Categoria categoria = new Categoria();
+    	categoria.setCategoria("Categoria Teste");
+    	categoria.setIdCategoria(2L);
+    	
+    	assertTrue(2L == categoria.getIdCategoria());
+    	
+    }
 }

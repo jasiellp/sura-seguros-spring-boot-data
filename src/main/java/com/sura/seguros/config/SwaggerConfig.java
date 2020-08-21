@@ -29,11 +29,11 @@ public class SwaggerConfig {
 
 	private ApiInfo metaData() {
 		return new ApiInfoBuilder()
-				.title("Spring Boot Data JPA REST API ")
+				.title("API Rest SURA Segutes ")
 				.description("Serviço criado por Jasiel P de Sant ana")
-				.version("2.2")
-				.license("Apache License Version 2.0")
-				.licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
+				.version("2.1")
+				.license("Linkedin")
+				.licenseUrl("https://www.linkedin.com/in/jasiel-pereira-de-sant-ana-b2126545/")
 				.build();
 	}
 
