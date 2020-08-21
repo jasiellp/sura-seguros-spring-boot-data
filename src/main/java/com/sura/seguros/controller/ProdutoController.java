@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +35,12 @@ public class ProdutoController
     public Optional<Produto> consultarProdutoPeloIdCategoria(@RequestParam Long id_Produto) 
     {
         return produtoRepository.findById(id_Produto);
+    }
+    
+    @DeleteMapping(path= "/", consumes = "application/json", produces = "application/json")
+    public void deleteProduto(@RequestParam Long id_produto) throws Exception 
+    {
+    	produtoRepository.deleteByIdProduto(id_produto);
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")

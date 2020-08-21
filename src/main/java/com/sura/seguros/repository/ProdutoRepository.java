@@ -13,5 +13,5 @@ public interface ProdutoRepository extends CrudRepository<Produto, Long>
     List<Produto> findByProduto(String produto); 
     
     @Transactional
-    void deleteByIdProduto(int idProduto);
+    void deleteByIdProduto(Long idProduto);
 }
