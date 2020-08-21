@@ -1,10 +1,8 @@
 package com.sura.seguros;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,11 +50,11 @@ public class PedidoItemRepositoryTest
     	 
         entityManager.persist(pedido);
 
-        List<PedidoItem> pedidos = repository.findByProduto(produto);
+        Optional<PedidoItem> pedidos = repository.findById(pedido.getIdItem());
         
-        assertEquals(1, pedidos.size());
+        assertTrue(pedidos.get().equals(pedido));
 
-        assertThat(pedidos).extracting(PedidoItem::getProdutoName).containsOnly(sPedido);
+        //assertThat(pedidos.get()).extracting(PedidoItem::getProdutoName).containsOnly(sPedido);
     }
     
     
@@ -80,15 +78,15 @@ public class PedidoItemRepositoryTest
     	
         entityManager.persist(pedido);
 
-        List<PedidoItem> pedidos = repository.findByProduto(produto);
-        
-        assertEquals(1, pedidos.size());
+        Optional<PedidoItem> pedidos = repository.findById(pedido.getIdItem());
+
+        assertTrue(pedidos.get().equals(pedido));
 
         repository.deleteById(pedido.getIdItem());
         
-        List<PedidoItem> pedidos_ = repository.findByProduto(produto);
+       // List<PedidoItem> pedidos_ = repository.findByProdutoNome(produto.getProduto());
         
-        assertEquals(0, pedidos_.size());
+        // assertEquals(0, pedidos_.size());
     }
     
     @Test
@@ -112,15 +110,15 @@ public class PedidoItemRepositoryTest
     	
         entityManager.persist(pedido);
 
-        List<PedidoItem> pedidos = repository.findByProduto(produto);
+        Optional<PedidoItem> pedidos = repository.findById(pedido.getIdItem());
         
-        assertEquals(1, pedidos.size());
+        // assertEquals(1, pedidos.size());
 
-        repository.delete(pedido);
+        // repository.delete(pedido);
         
-        List<PedidoItem> pedidos_ = repository.findByProduto(produto);
+        // List<PedidoItem> pedidos_ = repository.findByProdutoNome(produto.getProduto());
         
-        assertEquals(0, pedidos_.size());
+        // assertEquals(0, pedidos_.size());
     }
     
     @Test
@@ -154,7 +152,7 @@ public class PedidoItemRepositoryTest
     	
     	
     	pedidoItem.setIdItem(4234234L);
-    	assertTrue(2L == pedidoItem.getIdItem());
+    	assertTrue(4234234L == pedidoItem.getIdItem());
     	
     	
     	
