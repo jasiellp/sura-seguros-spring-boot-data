@@ -35,7 +35,7 @@ $ java -Dserver.port=$PORT $JAVA_OPTS -jar target/spring-boot-data-jpa-sura-segu
 
 
 ## Swagger
- [Swagger](http://brasil-prev-jasiel.herokuapp.com/swagger-ui.html)
+ [Swagger](http://sura-seguros.herokuapp.com/swagger)
 
  
 ## Meta
