@@ -41,11 +41,7 @@ $ java -Dserver.port=$PORT $JAVA_OPTS -jar target/spring-boot-data-jpa-sura-segu
 ## Meta
 
 [Jasiel Pereira de Sant ana](https://twitter.com/jasiellp) – jasiellp@hotmail.com
-
-Distribuído sob a licença XYZ. Veja `LICENSE` para mais informações.
-
-[https://github.com/yourname/github-link](https://github.com/othonalberto/)
-
+ 
 ## Contributing
 
 1. Faça o _fork_ do projeto (<https://github.com/jasiellp/brasil-p/fork>)
