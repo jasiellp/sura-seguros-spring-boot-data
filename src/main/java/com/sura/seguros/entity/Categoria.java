@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Categoria 
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCategoria;
@@ -25,9 +24,9 @@ public class Categoria
     @Override
     public String toString() 
     {
-        return "Categoria{ " +
-                "idCategoria=" + this.idCategoria +
-                ", categoria='" + this.categoria + '\'' +
+        return "Categoria { " +
+                " idCategoria=" + this.idCategoria +", "+
+                " categoria='" + this.categoria + '\'' +
                 '}';
     }
 

@@ -1,48 +1,23 @@
 package com.sura.seguros;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.sura.seguros.entity.Categoria;
-import com.sura.seguros.repository.CategoriaRepository;
-
 @SpringBootApplication
-public class StartApplication implements CommandLineRunner 
-{
-
-    private static final Logger log = LoggerFactory.getLogger(StartApplication.class);
-
-    @Autowired
-    private CategoriaRepository repository;
-
-    public static void main(String[] args) 
+public class StartApplication  
+{  
+    public static void main(String[] args)  throws URISyntaxException
     {
+    	URI dbUri = new URI(System.getenv("DATABASE_URL"));
+    	 
+	    System.setProperty("spring.datasource.username",dbUri.getUserInfo().split(":")[0]);
+	    System.setProperty("spring.datasource.password",dbUri.getUserInfo().split(":")[1]);
+	    System.setProperty("spring.datasource.url","jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require");
+		System.setProperty("spring.datasource.driver-class-name", "org.postgresql.Driver");
+		
         SpringApplication.run(StartApplication.class, args);
-    }
-
-    @Override
-    public void run(String... args) 
-    {
-
-        log.info("StartApplication...");
-
-        repository.save(new Categoria("Java"));
-        repository.save(new Categoria("Node"));
-        repository.save(new Categoria("Python"));
-
-        System.out.println("\nfindAll()");
-        repository.findAll().forEach(x -> System.out.println(x));
-
-        System.out.println("\nfindById(1L)");
-        repository.findById(1l).ifPresent(x -> System.out.println(x));
-
-        System.out.println("\nfindByName('Node')");
-        repository.findByName("Node").forEach(x -> System.out.println(x));
-
-    }
-
+    }     
 }

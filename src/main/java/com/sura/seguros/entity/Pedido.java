@@ -1,9 +1,13 @@
 package com.sura.seguros.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pedido 
@@ -11,9 +15,18 @@ public class Pedido
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
+    private Long idPedido;
+   
 
+	@ManyToOne
+    @JoinColumn(name = "idCliente")
+    private Cliente cliente;
+    private Date data;
+    private String name;
+    private String status;
+    private String sessao;
+    
+    
     public Pedido() 
     {
     }
@@ -26,22 +39,36 @@ public class Pedido
     @Override
     public String toString() 
     {
-        return "Book{ " +
-                "id=" + id +
+        return "Pedido{ " +
+                " idPedido=" + idPedido +
                 ", name='" + name + '\'' +
+                ", data='" + data + '\'' +
+                 
+                ", status='" + status + '\'' +
+                ", sessao='" + sessao + '\'' +
                 '}';
     }
+ 
+    
+    public Long getIdPedido()
+   	{
+   		return idPedido;
+   	}
 
-    public Long getId() 
-    {
-        return id;
-    }
+   	public void setIdPedido(Long idPedido)
+   	{
+   		this.idPedido = idPedido;
+   	}
 
-    public void setId(Long id) 
-    {
-        this.id = id;
-    }
+   	public Cliente getCliente()
+   	{
+   		return cliente;
+   	}
 
+   	public void setCliente(Cliente cliente)
+   	{
+   		this.cliente = cliente;
+   	}
     public String getName() 
     {
         return name;
@@ -51,4 +78,35 @@ public class Pedido
     {
         this.name = name;
     }
+    
+    public Date getData()
+   	{
+   		return data;
+   	}
+
+   	public void setData(Date data)
+   	{
+   		this.data = data;
+   	}
+ 
+
+   	public String getStatus()
+   	{
+   		return status;
+   	}
+
+   	public void setStatus(String status)
+   	{
+   		this.status = status;
+   	}
+
+   	public String getSessao()
+   	{
+   		return sessao;
+   	}
+
+   	public void setSessao(String sessao)
+   	{
+   		this.sessao = sessao;
+   	}
 }
