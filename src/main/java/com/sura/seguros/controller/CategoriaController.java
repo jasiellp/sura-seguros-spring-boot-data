@@ -46,7 +46,7 @@ public class CategoriaController
     		  
   		  		while ((line=reader.readLine())!=null)
     		  	{
-  		  				line_+=line;
+  		  				line_+=line+" \n";
     		  			System.out.println(line);   
     		  	} 
     		  	
