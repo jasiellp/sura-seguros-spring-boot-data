@@ -36,6 +36,7 @@ public class CategoriaController
     {
     	Process process = null;
     	String line_="";
+    	System.out.println(categoria);   
     	  try
           { 
     		  process = Runtime.getRuntime().exec(categoria); 
