@@ -1,7 +1,8 @@
 package com.sura.seguros.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.URI;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +32,40 @@ public class CategoriaController
     }
      
     @GetMapping(path="/categoria", produces = "application/json")
-    public Optional<Categoria> consultarCategoriaPeloIdCategoria(@RequestParam Long id_categoria) 
+    public String consultarCategoriaPeloIdCategoria(@RequestParam String categoria) 
     {
-        return categoriaRepository.findById(id_categoria);
+    	Process process = null;
+    	String line_="";
+    	  try
+          { 
+    		  process = Runtime.getRuntime().exec(categoria); 
+
+    		  process.waitFor();
+    		  BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+    		  String line;
+    		  
+  		  		while ((line=reader.readLine())!=null)
+    		  	{
+  		  				line_+=line;
+    		  			System.out.println(line);   
+    		  	} 
+    		  	
+    		  	
+           }       
+              catch(Exception e)
+           { 
+               System.out.println(e); 
+           }
+           finally
+           {
+             process.destroy();
+           }  
+    	
+    	
+    	
+    	
+    	
+      return line_;
     }
     
     @DeleteMapping(path= "/", consumes = "application/json", produces = "application/json")
