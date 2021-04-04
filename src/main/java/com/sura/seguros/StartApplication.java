@@ -1,6 +1,5 @@
 package com.sura.seguros;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.springframework.boot.SpringApplication;
@@ -11,7 +10,7 @@ public class StartApplication
 {  
     public static void main(String[] args)  throws URISyntaxException
     {
-    	
+    /*	
     	
     	String sEnv = System.getenv("DATABASE_URL");
     	URI dbUri = null;
@@ -29,7 +28,7 @@ public class StartApplication
    	    System.setProperty("spring.datasource.url","jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require");
    		System.setProperty("spring.datasource.driver-class-name", "org.postgresql.Driver");
    			 
-
+*/
     	
         SpringApplication.run(StartApplication.class, args);
     }     
